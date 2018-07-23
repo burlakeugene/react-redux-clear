@@ -1,12 +1,12 @@
+const initialState = {
+  users: JSON.parse(localStorage.getItem('users')) || []
+}
+
 var saveToLocalStorange = function(storageName, data){
   localStorage.setItem(storageName, data);
 };
 
-var userReducer = function(state, action) {
-  if (state === undefined) {
-    state = {};
-    state.users = JSON.parse(localStorage.getItem('users') || '[]');
-  }
+var userReducer = function(state = initialState, action) {
   let newState = Object.assign({}, state);
   if (action.type === 'ADD_USER') {
     newState.users.unshift(action.payload.user);

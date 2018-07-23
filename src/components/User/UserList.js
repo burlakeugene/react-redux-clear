@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../../store/';
+import {store} from '../../store/';
 import User from './User';
 
 class UserList extends Component {
