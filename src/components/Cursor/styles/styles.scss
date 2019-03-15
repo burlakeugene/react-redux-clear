@@ -1,0 +1,36 @@
+body.custom-cursor{
+    cursor: none;
+    & *{
+        &, &:hover{
+            cursor: none;
+        }
+    }
+}
+
+.cursor{
+    position: fixed;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #fff;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transition: all 0.1s;
+    &__mini{
+        width: 5px;
+        height: 5px;
+        transition: all 0s;
+    }
+    &__state{
+        width: 30px;
+        height: 30px;
+        will-change: left, top;
+        transition: left 0.1s, top 0.1s, transform 0.6s;
+        &__click{
+            transform: translate(-50%, -50%) scale(2);
+        }
+        &__link{
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+    }
+}
