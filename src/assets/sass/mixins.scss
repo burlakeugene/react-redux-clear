@@ -10,10 +10,10 @@
 	transform: $string;
 }
 
-@mixin calc($property, $expression...) { 
-  #{$property}: -o-calc(#{$expression}); 
-  #{$property}: -webkit-calc(#{$expression}); 
-  #{$property}: calc(#{$expression}); 
+@mixin calc($property, $expression...) {
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
 @mixin flex($align: top){
