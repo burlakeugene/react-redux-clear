@@ -7,6 +7,12 @@ export function loadSwitch(bool = true){
 	}
 }
 
+export function testFunc(){
+	return {
+		type: 'INC'
+	}
+}
+
 // export function thunkTest(){
 // 	return function(dispatch){
 // 		dispatch({

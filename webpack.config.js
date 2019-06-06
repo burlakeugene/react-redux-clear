@@ -15,6 +15,8 @@ function getJSONConfig() {
 
 const JSON_CONFIG = getJSONConfig();
 
+const isDevelopment = process.env.WEBPACK_DEV_SERVER === "true";
+
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -55,6 +57,18 @@ module.exports = {
         loader: "file-loader?name=[name].[ext]"
       }
     ]
+  },
+  resolve: {
+    alias: {
+      components: ROOT_DIR + "/src/app/components",
+      containers: ROOT_DIR + "/src/app/containers",
+      actions: ROOT_DIR + "/src/app/actions",
+      store: ROOT_DIR + "/src/app/store",
+      layouts: ROOT_DIR + "/src/app/layouts"
+    }
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

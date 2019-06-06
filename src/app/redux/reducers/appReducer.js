@@ -6,6 +6,10 @@ var appReducer = function(state = initialState, action) {
         newState.loading = action.payload.loading;
         return newState;
     }
+    if (action.type === 'INC') {
+        newState.test++;
+        return newState;
+    }
     return state;
 }
 

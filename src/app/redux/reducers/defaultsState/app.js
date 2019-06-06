@@ -1,3 +1,4 @@
 export default {
-    loading: true
+    loading: true,
+    test: 1
 }

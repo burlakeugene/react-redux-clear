@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
 import { store } from "./redux/store/";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Layout from "./layout/Main.jsx";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import Index from './containers/Index/index.jsx';
-import Preloader from "./components/Preloader";
+
+import Layout from "layouts/Main.jsx";
+import Index from 'containers/Index/index.jsx';
+import Header from 'containers/Header/index.jsx';
+import Footer from 'containers/Footer/index.jsx';
+import Test from 'containers/Test/index.jsx';
+import NotFound from 'containers/NotFound/index.jsx';
+import Preloader from "components/Preloader";
+
 
 class App extends Component {
   render() {
@@ -17,13 +23,20 @@ class App extends Component {
       <div className={className}>
         <Preloader loading={loading} />
         <Router>
-          <div>
+          <Switch>
             <Route
               exact
               path="/"
-              component={Layout({main: Index })}
+              component={Layout({main: Index, header: Header, footer: Footer})}
             />
-          </div>
+            <Route
+              path="/test"
+              component={Layout({main: Test, header: Header, footer: Footer})}
+            />
+            <Route
+              component={Layout({main: NotFound, header: Header, footer: Footer})}
+            />
+          </Switch>
         </Router>
       </div>
     );
