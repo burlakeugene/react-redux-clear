@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "CONFIG_NAME='dev' webpack-dev-server --mode development --port 3001 --open --hot",
+    "dev": "CONFIG_NAME='dev' webpack-dev-server --mode development --host 192.168.0.165 --port 3001 --open --hot",
     "stage": "CONFIG_NAME='dev' webpack --mode development",
     "prod": "CONFIG_NAME='prod' webpack --mode production"
   },

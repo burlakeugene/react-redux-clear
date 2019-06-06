@@ -21,7 +21,7 @@ class App extends Component {
     if (!loading) className += " app-wrapper__loaded";
     return (
       <div className={className}>
-        <Preloader loading={loading} />
+        {/* <Preloader loading={loading} /> */}
         <Router>
           <Switch>
             <Route
