@@ -1,4 +1,7 @@
 export default {
-    loading: true,
+    loading: {
+        show: true,
+        mini: false
+    },
     test: 1
 }

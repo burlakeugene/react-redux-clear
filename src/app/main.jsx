@@ -13,15 +13,23 @@ import Test from 'containers/Test/index.jsx';
 import NotFound from 'containers/NotFound/index.jsx';
 import Preloader from "components/Preloader";
 
+import {loadSwitch} from 'actions/App';
 
 class App extends Component {
+  componentDidMount(){
+    setTimeout(() => {
+      store.dispatch(loadSwitch(false));
+    }, 3000);
+  }
   render() {
-    let { loading = false } = this.props,
+    let { loadingShow = false, loadingMini = false } = this.props,
       className = "app-wrapper";
-    if (!loading) className += " app-wrapper__loaded";
+    if (!loadingShow) className += " app-wrapper__loaded";
     return (
       <div className={className}>
-        <Preloader loading={loading} />
+        <Preloader
+          mini={loadingMini}
+          loading={loadingShow} />
         <Router>
           <Switch>
             <Route
@@ -45,7 +53,8 @@ class App extends Component {
 
 App = connect(state => {
   return {
-    loading: state.appReducer.loading
+    loadingShow: state.appReducer.loading.show || false,
+    loadingMini: state.appReducer.loading.mini || false,
   };
 })(App);
 

@@ -1,8 +1,9 @@
-export function loadSwitch(bool = true){
+export function loadSwitch(show, mini){
 	return {
 		type: 'LOAD_SWITCH',
 		payload: {
-			loading: bool
+			show,
+			mini
 		}
 	}
 }
