@@ -12,11 +12,11 @@ export default class componentName extends Component {
   render() {
     return (
       <div>
-        <span onClick={() => {
-          this.refs.modal.open();
-        }}>modal</span>
-        <Modal ref="modal">
-          Modal content
+        <Modal opened ref="modal">
+          Modal content<br />
+          Modal content<br />
+          Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />
+          Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />
         </Modal>
         2
       </div>
