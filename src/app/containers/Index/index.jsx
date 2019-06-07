@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 class Index extends Component {
   render() {
-    console.log(this.props.test);
     return (
       <div>
         {this.props.test}
