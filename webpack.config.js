@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 //config
 const ROOT_DIR = __dirname;
 const CLIENT_CONFIGS_DIR = path.resolve(ROOT_DIR, "./config");
@@ -14,7 +14,6 @@ function getJSONConfig() {
 }
 
 const JSON_CONFIG = getJSONConfig();
-
 const isDevelopment = process.env.WEBPACK_DEV_SERVER === "true";
 
 module.exports = {
@@ -27,7 +26,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
       },
@@ -54,30 +53,35 @@ module.exports = {
       },
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-        loader: "file-loader?name=[name].[ext]"
+        loader: "file-loader?name=[name].[ext]",
+        options: {
+          outputPath: 'media',
+        },
       }
     ]
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     alias: {
       components: ROOT_DIR + "/src/app/components",
       containers: ROOT_DIR + "/src/app/containers",
       actions: ROOT_DIR + "/src/app/actions",
-      store: ROOT_DIR + "/src/app/store",
-      layouts: ROOT_DIR + "/src/app/layouts"
+      store: ROOT_DIR + "/src/app/redux/store",
+      layouts: ROOT_DIR + "/src/app/layouts",
     }
   },
   devServer: {
     historyApiFallback: true,
   },
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: "./src/favicon.svg",
+      inject: true
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       APP_CONFIG: JSON.stringify(JSON_CONFIG),
       title: JSON_CONFIG.name
     }),
-    new FaviconsWebpackPlugin({
-      logo: "./src/favicon.svg"
-    })
   ]
 };

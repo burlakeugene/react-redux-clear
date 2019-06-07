@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {loadSwitch} from '../../actions/app';
-import {store} from '../../redux/store/';
+import {loadSwitch} from 'actions/app';
+import {store} from 'store';
 import './styles/styles.scss';
 
 class Preloader extends Component{
