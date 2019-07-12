@@ -48,9 +48,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
                 plugins: [
-                    autoprefixer({
-                        browsers:['ie >= 8', 'last 4 version']
-                    })
+                    autoprefixer()
                 ],
                 sourceMap: true
             }
@@ -79,7 +77,7 @@ module.exports = {
       containers: ROOT_DIR + "/src/app/containers",
       actions: ROOT_DIR + "/src/app/actions",
       store: ROOT_DIR + "/src/app/redux/store",
-      layouts: ROOT_DIR + "/src/app/layouts",
+      layouts: ROOT_DIR + "/src/app/layouts"
     }
   },
   devServer: {

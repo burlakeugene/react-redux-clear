@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {testFunc} from 'actions/App';
-import Modal from 'components/Modal/index.jsx';
-import {store} from '../../redux/store/';
+import Modal from 'burlak-react-modal';
+import Form from 'burlak-react-form';
+import {store} from 'store';
 export default class componentName extends Component {
   constructor(){
     super();
@@ -12,13 +13,29 @@ export default class componentName extends Component {
   render() {
     return (
       <div>
-        <Modal opened ref="modal">
-          Modal content<br />
-          Modal content<br />
-          Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />
-          Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />Modal content<br />
+        <Modal opened={true} ref="modal">
+          dsd
         </Modal>
-        2
+        <Form
+          onSubmit={() => {
+            return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve();
+              }, 1000);
+            })
+          }}
+          styled
+          fields={[{
+            name: '1',
+            type: 'text',
+            validation: (e) => {
+              if(!e) return 'alarm'
+            }
+          },{
+            value: 'aaa',
+            type: 'submit'
+          }]}
+        />
       </div>
     )
   }
