@@ -22,63 +22,64 @@ module.exports = {
   output: {
     path: path.join(ROOT_DIR, '/dist'),
     publicPath: JSON_CONFIG.publicPath,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.js(x)?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             loader: 'postcss-loader',
             options: {
               plugins: [autoprefixer()],
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
             loader: 'sass-loader',
             options: {
-              includePaths: ['absolute/path/a', 'absolute/path/b']
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            query: {
-              name: '[name]-[hash].[ext]'
-            }
-          }
-        ]
+              includePaths: ['absolute/path/a', 'absolute/path/b'],
+            },
+          },
+        ],
       },
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.pdf$|\.png$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
         loader: 'file-loader',
         options: {
           outputPath: 'media',
-          name: '[name].[ext]'
-        }
-      }
-    ]
+          name: '[name].[ext]',
+        },
+      },
+      {
+        test: /\.svg$/,
+        oneOf: [
+          {
+            resourceQuery: /jsx/,
+            use: ['@svgr/webpack'],
+          },
+          {
+            use: 'url-loader',
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -86,23 +87,23 @@ module.exports = {
       components: ROOT_DIR + '/src/app/components',
       containers: ROOT_DIR + '/src/app/containers',
       actions: ROOT_DIR + '/src/app/actions',
-      store: ROOT_DIR + '/src/app/redux/store',
+      store: ROOT_DIR + '/src/app/store',
       layouts: ROOT_DIR + '/src/app/layouts',
-      assets: ROOT_DIR + '/src/app/assets'
-    }
+      assets: ROOT_DIR + '/src/app/assets',
+    },
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
     new FaviconsWebpackPlugin({
       logo: './src/favicon.svg',
-      inject: true
+      inject: true,
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       APP_CONFIG: JSON.stringify(JSON_CONFIG),
-      title: JSON_CONFIG.name
-    })
-  ]
+      title: JSON_CONFIG.name,
+    }),
+  ],
 };
