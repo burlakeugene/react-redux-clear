@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import store from 'store';
+import { render } from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Switch,
+  Link,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Counter from './Counter/index';
-class App extends Component {
-  render() {
-    return <>
-      <div>test</div>
-      <Counter />
-    </>;
-  }
-}
+import Counter from 'components/Counter';
+import store from 'store';
 
-ReactDOM.render(
+const App = (props) => {
+  return (
+    <>
+      {props.text}
+      <Link to="/">Index</Link> | <Link to="/page">Page</Link>
+      <Counter />
+    </>
+  );
+};
+
+render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <Routes>
+        <Route path="/" element={<App text={'index'} />} />
+        <Route path="/page" element={<App text={'page'} />} />
+      </Routes>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );
