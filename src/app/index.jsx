@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Counter from 'components/Counter';
+import Hook from 'components/Hook';
 import store from 'store';
 
 const App = (props) => {
@@ -17,6 +18,7 @@ const App = (props) => {
       {props.text}
       <Link to="/">Index</Link> | <Link to="/page">Page</Link>
       <Counter />
+      <Hook />
     </>
   );
 };
