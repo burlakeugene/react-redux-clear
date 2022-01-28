@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import Counter from 'components/Counter';
 import Hook from 'components/Hook';
 import store from 'store';
-
+import './tests';
 const App = (props) => {
   return (
     <>
