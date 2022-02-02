@@ -6,16 +6,17 @@ function useResize() {
     setWidth(window.innerWidth);
   };
   useEffect(() => {
+    console.log('mount');
     window.addEventListener('resize', event);
     return () => {
+      console.log('unmount');
       window.removeEventListener('resize', event);
     };
-  });
+  }, []);
   return { width };
 }
 
 export default function SomeComponent() {
   const { width } = useResize();
-
   return <div>{width}</div>;
 }

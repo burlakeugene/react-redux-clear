@@ -10,6 +10,7 @@ import {
 import { Provider } from 'react-redux';
 import Counter from 'components/Counter';
 import Hook from 'components/Hook';
+import Memo from 'components/Memo';
 import store from 'store';
 import './tests';
 const App = (props) => {
@@ -19,6 +20,7 @@ const App = (props) => {
       <Link to="/">Index</Link> | <Link to="/page">Page</Link>
       <Counter />
       <Hook />
+      <Memo />
     </>
   );
 };

@@ -20,9 +20,9 @@ let inc = (() => {
     return ++count;
   };
 })();
-console.log(inc());
-console.log(inc());
-console.log(inc());
+// console.log(inc());
+// console.log(inc());
+// console.log(inc());
 
 let arr = ['bannana', 'bannana', 'grapefruit', 'orange', 'orange', 'bannana'];
 
@@ -39,7 +39,6 @@ let sort = (arr) => {
     .map((item) => item[0]);
   return result;
 };
-
 // console.log(sort(arr));
 
 let multiplyByTwo = (...args) => {
@@ -49,5 +48,36 @@ let multiplyByTwo = (...args) => {
   }
   return result;
 };
-
 // console.log(multiplyByTwo(4, 8, 1));
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+// wait(5000).then(() => {
+//   console.log('w');
+// })
+
+
+//event loop
+// console.log('1');
+// setTimeout(() => {
+//   console.log('2');
+//   new Promise((resolve) => {
+//     console.log('9')
+//     resolve();
+//   }).then(() => {
+//     console.log('7');
+//   });
+// }, 0);
+// setTimeout(() => {
+//   console.log('8');
+// }, 0);
+// let promise = new Promise((resolve) => {
+//   console.log('3');
+//   resolve();
+// });
+// promise.then((resp) => {
+//   console.log('4')
+//   return resp
+// }).then(() => {
+//   console.log('5');
+// })
+// console.log('6');
