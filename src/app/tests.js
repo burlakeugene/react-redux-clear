@@ -43,18 +43,17 @@ let sort = (arr) => {
 
 let multiplyByTwo = (...args) => {
   let result = [];
-  for(let i = 0; i <= args.length - 1; i++){
+  for (let i = 0; i <= args.length - 1; i++) {
     result.push(args[i] * 2);
   }
   return result;
 };
 // console.log(multiplyByTwo(4, 8, 1));
 
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // wait(5000).then(() => {
 //   console.log('w');
 // })
-
 
 //event loop
 // console.log('1');
@@ -81,3 +80,32 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 //   console.log('5');
 // })
 // console.log('6');
+
+let str = 'Аывц-уцв , 2!';
+console.log(str.replace(/[^a-zA-ZА-Яа-яЁё]/gi,'').toLowerCase());
+
+const structure = [
+  'a.js',
+  'b.js',
+  {
+    src: [
+      'some.js',
+      'other.js',
+      {
+        components: ['someComponent.js'],
+      },
+    ],
+  },
+];
+const flatten = (structure, path = '') => {
+  let result = [];
+  structure.forEach((item) => {
+    if (typeof item === 'string') result.push(path + item);
+    else {
+      let [folder] = Object.keys(item);
+      result = [...result, ...flatten(item[folder], path + folder + '/')];
+    }
+  });
+  return result;
+};
+console.log(flatten(structure));
