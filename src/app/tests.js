@@ -82,7 +82,7 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // console.log('6');
 
 let str = 'Аывц-уцв , 2!';
-console.log(str.replace(/[^a-zA-ZА-Яа-яЁё]/gi,'').toLowerCase());
+console.log(str.replace(/[^a-zA-ZА-Яа-яЁё]/gi, '').toLowerCase());
 
 const structure = [
   'a.js',
@@ -93,8 +93,12 @@ const structure = [
       'other.js',
       {
         components: ['someComponent.js'],
+        build: ['1', '2'],
       },
     ],
+  },
+  {
+    dist: ['2', '3'],
   },
 ];
 const flatten = (structure, path = '') => {
@@ -102,8 +106,10 @@ const flatten = (structure, path = '') => {
   structure.forEach((item) => {
     if (typeof item === 'string') result.push(path + item);
     else {
-      let [folder] = Object.keys(item);
-      result = [...result, ...flatten(item[folder], path + folder + '/')];
+      let folders = Object.keys(item);
+      folders.forEach((folder) => {
+        result = [...result, ...flatten(item[folder], path + folder + '/')];
+      });
     }
   });
   return result;
