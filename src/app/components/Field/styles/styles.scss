@@ -1,0 +1,68 @@
+.field {
+  --field-background: #000;
+  --field-border: #000;
+  --field-text: #fff;
+  & [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: --field-text;
+  border: 1px solid var(--field-border);
+  background-color: var(--field-background);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s;
+  &--focused {
+  }
+  &__input {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 16px;
+    &__value {
+      overflow: hidden;
+      color: var(--field-text);
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  &__button {
+    width: 44px;
+    height: 44px;
+    position: relative;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:after,
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 13px;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--field-text);
+      transition: all 0.3s;
+    }
+    &--inc {
+      &:after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+}

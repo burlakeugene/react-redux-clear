@@ -2,23 +2,20 @@ import React, { memo, useCallback, useState, useMemo } from 'react';
 
 const Test = memo(({ index }) => {
   const func = useMemo(() => {
-    return () => {
-      console.log(index);
-    };
-  });
+    return index;
+  }, []);
   const func2 = useCallback(() => {
     console.log(index);
-  }, []);
+  }, [index]);
   return (
     <div>
       ds{index}{' '}
       <button
         onClick={() => {
-          func();
           func2();
         }}
       >
-        2
+        2 {func}
       </button>
     </div>
   );

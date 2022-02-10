@@ -1,0 +1,37 @@
+.scroll-top {
+  position: fixed;
+  bottom: 65px;
+  left: 4px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--theme-dark);
+  border-radius: 50%;
+  z-index: 3;
+  border: none;
+  padding: 0;
+  transition: all 0.3s;
+  transform: scale(0);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 14px;
+    height: auto;
+    stroke: var(--white);
+    transition: all 0.3s;
+    transform: translateY(5px);
+  }
+  &--visible {
+    transform: scale(1);
+    opacity: 1;
+    svg{
+      transform: translateY(0px);
+    }
+  }
+  &:hover{
+    svg{
+      transform: translateY(-5px);
+    }
+  }
+}
