@@ -3,9 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-//config
-const ROOT_DIR = __dirname;
-const CLIENT_CONFIGS_DIR = path.resolve(ROOT_DIR, './config');
+
+const CLIENT_CONFIGS_DIR = path.resolve(__dirname, './config');
 const CONFIG_NAME = (process.env.CONFIG_NAME = process.env.CONFIG_NAME.trim());
 
 function getJSONConfig() {
@@ -16,11 +15,10 @@ function getJSONConfig() {
 
 const JSON_CONFIG = getJSONConfig();
 const isDevelopment = process.env.WEBPACK_DEV_SERVER === 'true';
-
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(ROOT_DIR, '/dist'),
+    path: path.join(__dirname, '/dist'),
     publicPath: JSON_CONFIG.publicPath,
     filename: 'bundle.js',
   },
@@ -30,6 +28,11 @@ module.exports = {
         test: /\.js(x)?$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+      },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'ts-loader']
       },
       {
         test: /\.css$/,
@@ -54,7 +57,6 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              includePaths: ['absolute/path/a', 'absolute/path/b'],
             },
           },
         ],
@@ -82,24 +84,21 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      components: ROOT_DIR + '/src/app/components',
-      containers: ROOT_DIR + '/src/app/containers',
-      actions: ROOT_DIR + '/src/app/actions',
-      store: ROOT_DIR + '/src/app/store',
-      layouts: ROOT_DIR + '/src/app/layouts',
-      assets: ROOT_DIR + '/src/app/assets',
+      components: __dirname + '/src/app/components',
+      containers: __dirname + '/src/app/containers',
+      actions: __dirname + '/src/app/actions',
+      store: __dirname + '/src/app/store',
+      layouts: __dirname + '/src/app/layouts',
+      assets: __dirname + '/src/app/assets',
     },
   },
   devServer: {
     historyApiFallback: true,
   },
   plugins: [
-    new FaviconsWebpackPlugin({
-      logo: './src/favicon.svg',
-      inject: true,
-    }),
+    new FaviconsWebpackPlugin('./src/favicon.svg'),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       APP_CONFIG: JSON.stringify(JSON_CONFIG),
