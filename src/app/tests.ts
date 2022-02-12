@@ -4,8 +4,6 @@ function foo(num:number) {
   return num;
 }
 
-console.log(foo(1));
-
 // let sum = function (num) {
 //   let current = num,
 //     inner = function (num) {

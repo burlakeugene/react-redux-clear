@@ -1,4 +1,4 @@
-import React, { Component, useRef, useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -8,53 +8,18 @@ import {
   Link,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Counter from 'components/Counter';
-import Hook from 'components/Hook';
-import Memo from 'components/Memo';
+import Demos from 'containers/Demos';
+import ToDo from 'containers/ToDo';
 import store from 'store';
-import Swipe from 'components/Swipe';
-import Field from 'components/Field';
-import DynamicTime from 'components/DynamicTime';
-import Humburger from 'components/Humburger';
 import './tests';
 import './styles.scss';
-const App = (props) => {
-  let swipeRef = useRef();
-  let [humburgerState, humburgerChange] = useState(false);
-  return (
-    <>
-      {props.text}
-      <Link to="/">Index</Link> | <Link to="/page">Page</Link>
-      <Counter />
-      <Hook />
-      <Memo />
-      <button
-        onClick={() => {
-          swipeRef.current.show();
-        }}
-      >
-        Swipe call
-      </button>
-      <Swipe ref={swipeRef}>lore</Swipe>
-      <Field value={1} min={0} max={200} step={1} />
-      <DynamicTime to={+new Date() + 121 * 1000} />
-      <DynamicTime from={+new Date()} />
-      <Humburger
-        active={humburgerState}
-        onChange={(state) => {
-          humburgerChange(state);
-        }}
-      />
-    </>
-  );
-};
-
 render(
   <Provider store={store}>
     <Router>
+      <Link to="/">Index</Link> | <Link to="/todolist">ToDo</Link>
       <Routes>
-        <Route path="/" element={<App text={'index'} />} />
-        <Route path="/page" element={<App text={'page'} />} />
+        <Route path="/" element={<Demos />} />
+        <Route path="/todolist" element={<ToDo />} />
       </Routes>
     </Router>
   </Provider>,
