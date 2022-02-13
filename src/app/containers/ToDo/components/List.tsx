@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import DynamicTime from 'components/DynamicTime/index.jsx';
+
 interface IItem {
   name: string;
   date: Date;
@@ -14,7 +16,7 @@ export default () => {
         return (
           <div key={index}>
             {item.name} <br />
-            {item.date}
+            <DynamicTime from={+new Date(item.date)} />
           </div>
         );
       })}

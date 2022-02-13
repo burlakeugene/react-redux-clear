@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-
 const CLIENT_CONFIGS_DIR = path.resolve(__dirname, './config');
 const CONFIG_NAME = (process.env.CONFIG_NAME = process.env.CONFIG_NAME.trim());
 
@@ -32,7 +31,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'ts-loader']
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.css$/,
@@ -56,8 +55,7 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
-            options: {
-            },
+            options: {},
           },
         ],
       },
