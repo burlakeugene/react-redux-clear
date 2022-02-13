@@ -16,7 +16,6 @@ import './styles.scss';
 import DynamicTime from 'components/DynamicTime';
 render(
   <Provider store={store}>
-    <DynamicTime from={+new Date()}/>
     <Router>
       <Link to="/">Index</Link> | <Link to="/todolist">ToDo</Link>
       <Routes>
