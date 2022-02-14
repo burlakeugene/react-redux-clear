@@ -4,6 +4,12 @@ const getRandomId = () => {
   return Math.random().toString(16);
 };
 
+export const get = createAsyncThunk('todo/get', (data) => {
+  return new Promise((resolve) => {
+    resolve(JSON.parse(localStorage.getItem('todolist') || '[]'));
+  });
+});
+
 export const add = createAsyncThunk('todo/add', (data) => {
   return Promise.resolve(data);
 });
@@ -33,6 +39,7 @@ export const todoSlice = createSlice({
       action.payload.id = getRandomId();
       action.payload.status = 'NEW';
       state.list.unshift(action.payload);
+      localStorage.setItem('todolist', JSON.stringify(state.list));
     });
     builder.addCase(edit.fulfilled, (state, action) => {
       state.list = state.list.map((item) => {
@@ -41,11 +48,16 @@ export const todoSlice = createSlice({
         }
         return item;
       });
+      localStorage.setItem('todolist', JSON.stringify(state.list));
     });
     builder.addCase(remove.fulfilled, (state, action) => {
       state.list = state.list.filter((item) => {
         return item.id !== action.payload.id;
       });
+      localStorage.setItem('todolist', JSON.stringify(state.list));
+    });
+    builder.addCase(get.fulfilled, (state, action) => {
+      state.list = action.payload;
     });
   },
 });
