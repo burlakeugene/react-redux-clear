@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import * as React from "react"
 import { useDispatch } from 'react-redux';
 import { add } from 'store/reducers/todo';
 
 export default () => {
-  const [name, setName] = useState(''),
+  const [name, setName] = React.useState(''),
     dispatch = useDispatch(),
     changeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
       setName(event.target.value);

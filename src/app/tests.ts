@@ -1,6 +1,6 @@
 //curry
 
-function foo(num:number) {
+export function foo(num:number) {
   return num;
 }
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from "react"
 import { useDispatch } from 'react-redux';
-import DynamicTime from 'components/DynamicTime/index.jsx';
+import DynamicTime from 'components/DynamicTime/index';
 import { edit, remove, get } from 'store/reducers/todo';
 import { RootState, IItem } from 'store/types';
 import RemoveIcon from 'assets/icons/remove.svg?jsx';

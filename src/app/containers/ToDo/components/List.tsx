@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { edit, remove, get } from 'store/reducers/todo';
 import { RootState, IItem } from 'store/types';
@@ -8,7 +8,7 @@ export default () => {
       return state.todo.list;
     }),
     dispatch = useDispatch();
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(get());
   }, []);
   return (

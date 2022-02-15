@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from "react"
 import Panel from './components/Panel';
 import List from './components/List';
 import './styles/styles.scss';
@@ -9,3 +9,4 @@ export default () => {
     <List />
   </div>;
 };
+
