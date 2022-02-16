@@ -1,5 +1,7 @@
 import { foo } from './tests.ts';
 
 test('test', () => {
-  expect(foo(1)).toBe(1);
+  foo(1).then((value) => {
+    expect(value).toBe(1);
+  })
 });

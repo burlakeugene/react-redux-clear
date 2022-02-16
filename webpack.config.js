@@ -15,7 +15,7 @@ function getJSONConfig() {
 const JSON_CONFIG = getJSONConfig();
 const isDevelopment = process.env.WEBPACK_DEV_SERVER === 'true';
 module.exports = {
-  entry: './src/index.js',
+  entry: ['@babel/polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: JSON_CONFIG.publicPath,

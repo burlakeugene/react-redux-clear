@@ -1,8 +1,17 @@
 //curry
 
-export function foo(num:number) {
+export async function foo(num:number) {
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1)
+    }, 1000);
+  });
   return num;
 }
+
+foo(142).then((resp) => {
+  console.log(resp);
+})
 
 // let sum = function (num) {
 //   let current = num,

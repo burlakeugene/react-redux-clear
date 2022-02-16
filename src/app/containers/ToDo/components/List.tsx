@@ -12,10 +12,14 @@ export default () => {
     dispatch(get());
   }, []);
   return (
-    <div className="todo__list">
-      {list.map((item, index) => {
-        return <Item data={item} key={index} />;
-      })}
-    </div>
+    <>
+      {list.length ? (
+        <div className="todo__list" data-testid="list">
+          {list.map((item, index) => {
+            return <Item data={item} key={index} />;
+          })}
+        </div>
+      ) : null}
+    </>
   );
 };

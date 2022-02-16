@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import DynamicTime from 'components/DynamicTime/index';
 import { edit, remove, get } from 'store/reducers/todo';
@@ -9,6 +9,7 @@ export default ({ data }: { data: IItem }) => {
   const dispatch = useDispatch();
   return (
     <div
+      data-testit="item"
       className={['todo__item', 'todo__item--' + data.status].join(' ')}
       onClick={(event: React.MouseEvent<HTMLDivElement>) => {
         dispatch(
@@ -19,7 +20,7 @@ export default ({ data }: { data: IItem }) => {
         );
       }}
     >
-      {data.name}
+      <span>{data.name}</span>
       <DynamicTime from={+new Date(data.date)} />
       <button
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {

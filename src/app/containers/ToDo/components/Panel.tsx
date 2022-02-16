@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { add } from 'store/reducers/todo';
 
@@ -20,8 +20,15 @@ export default () => {
     };
   return (
     <div className="todo__panel">
-      <input type="text" value={name} onChange={changeHandle} />
-      <button onClick={addHandler}>Add</button>
+      <input
+        data-testid="input"
+        type="text"
+        value={name}
+        onChange={changeHandle}
+      />
+      <button data-testid="button" onClick={addHandler}>
+        Add
+      </button>
     </div>
   );
 };
