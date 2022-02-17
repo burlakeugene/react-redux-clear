@@ -37,6 +37,7 @@
     "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^5.0.0",
     "jest": "^27.5.1",
+    "jest-svg-transformer": "^1.0.0",
     "node-sass": "^7.0.1",
     "postcss-loader": "^3.0.0",
     "redux-devtools": "^3.7.0",

@@ -9,7 +9,7 @@ export default ({ data }: { data: IItem }) => {
   const dispatch = useDispatch();
   return (
     <div
-      data-testit="item"
+      data-testid="item"
       className={['todo__item', 'todo__item--' + data.status].join(' ')}
       onClick={(event: React.MouseEvent<HTMLDivElement>) => {
         dispatch(

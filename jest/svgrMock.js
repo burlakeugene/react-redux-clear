@@ -1,1 +1,2 @@
-module.exports = { ReactComponent: 'IconMock' }
+export default 'SvgrURL'
+export const ReactComponent = 'div'
