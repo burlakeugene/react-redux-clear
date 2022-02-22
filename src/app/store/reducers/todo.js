@@ -6,7 +6,7 @@ const getRandomId = () => {
 
 export const get = createAsyncThunk('todo/get', (data) => {
   return new Promise((resolve) => {
-    // resolve(JSON.parse(localStorage.getItem('todolist') || '[]'));
+    resolve(JSON.parse(localStorage.getItem('todolist') || '[]'));
   });
 });
 

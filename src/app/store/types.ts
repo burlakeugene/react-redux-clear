@@ -1,5 +1,3 @@
-import store from './index';
-
 export interface IItem {
   name: string;
   date: Date;

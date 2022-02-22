@@ -5,6 +5,10 @@ import { edit, remove, get } from 'store/reducers/todo';
 import { RootState, IItem } from 'store/types';
 import RemoveIcon from 'assets/icons/remove.svg?jsx';
 
+// Pick<IItem, 'status' | 'status' | 'date' | 'name'>
+// Required<Pick<IItem, 'status' | 'status' | 'date' | 'name'>>
+// Required<Omit<IItem, 'history'>>
+
 export default ({ data }: { data: IItem }) => {
   const dispatch = useDispatch();
   return (
