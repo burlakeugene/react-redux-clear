@@ -24,7 +24,7 @@ export default ({ data }: { data: IItem }) => {
         );
       }}
     >
-      <span>{data.name}</span>
+      <div>{data.name}</div>
       <DynamicTime from={+new Date(data.date)} />
       <button
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {

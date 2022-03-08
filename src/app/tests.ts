@@ -1,9 +1,9 @@
 //curry
 
-export async function foo(num:number) {
+export async function foo(num: number) {
   await new Promise((resolve) => {
     setTimeout(() => {
-      resolve(1)
+      resolve(1);
     }, 1000);
   });
   return num;
@@ -11,7 +11,39 @@ export async function foo(num:number) {
 
 foo(142).then((resp) => {
   console.log(resp);
-})
+});
+
+// class User<T, K extends number> {
+//   constructor(public name: T, public age: K) {}
+//   getUser(): string {
+//     return this.name + ' ' + this.age;
+//   }
+//   getAge(): number {
+//     return this.age;
+//   }
+// }
+
+// const test = new User('Eugene', 29);
+// console.log(test.getUser());
+// console.log(test.getAge());
+
+// const getUser = <T, K>(userName: T, age: K): string => {
+//   return userName+' '+age;
+// };
+
+// console.log(getUser('Eugene', 29));
+
+type TTwoArgsFunction = (a: string, b: number) => boolean;
+type Parameters<T> = T extends (...args: infer T) => any ? T : never;
+type ReturnType<T> = T extends (...args: any[]) => infer T ? T : never;
+const test: TTwoArgsFunction = (a, b) => !!b;
+type params = Parameters<typeof test>;
+type TMyType = (a: params[0]) => params[1];
+const test2: TMyType = (a) => +a;
+
+test2('1');
+
+
 
 // let sum = function (num) {
 //   let current = num,
