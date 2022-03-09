@@ -36,10 +36,9 @@ foo(142).then((resp) => {
 type TTwoArgsFunction = (a: string, b: number) => boolean;
 type Parameters<T> = T extends (...args: infer T) => any ? T : never;
 type ReturnType<T> = T extends (...args: any[]) => infer T ? T : never;
-const test: TTwoArgsFunction = (a, b) => !!b;
-type params = Parameters<typeof test>;
-type TMyType = (a: params[0]) => params[1];
-const test2: TMyType = (a) => +a;
+type TMyType<T> = (a:Parameters<T>[0]) => Parameters<T>[1];
+type TTest = TMyType<TTwoArgsFunction>;
+const test2: TTest = (a) => +a;
 
 test2('1');
 
