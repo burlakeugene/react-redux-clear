@@ -8,6 +8,7 @@ import {
   Link,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Index from 'containers/Index';
 import Demos from 'containers/Demos';
 import ToDo from 'containers/ToDo';
 import store from 'store';
