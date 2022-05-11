@@ -8,7 +8,7 @@ import {
   Link,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Index from 'containers/Index';
+import Demo from 'containers/Demo';
 import Demos from 'containers/Demos';
 import ToDo from 'containers/ToDo';
 import store from 'store';
@@ -21,9 +21,11 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <Router>
-      <Link to="/">Index</Link> | <Link to="/todolist">ToDo</Link>
+      <Link to="/">Index</Link> | <Link to="/todolist">ToDo</Link> |{' '}
+      <Link to="/demo">Demo</Link>
       <Routes>
         <Route path="/" element={<Demos />} />
+        <Route path="/demo" element={<Demo />} />
         <Route path="/todolist" element={<ToDo />} />
       </Routes>
     </Router>
