@@ -1,10 +1,8 @@
 import React from 'react';
 
-import events from '@edna/utils/events';
-
-import ErrorIcon from 'src/icons/error.svg';
-import SuccessIcon from 'src/icons/success.svg';
-import WarningIcon from 'src/icons/warning.svg';
+import ErrorIcon from 'assets/icons/error.svg?jsx';
+import SuccessIcon from 'assets/icons/success.svg?jsx';
+import WarningIcon from 'assets/icons/warning.svg?jsx';
 
 import * as S from './style';
 
@@ -14,30 +12,14 @@ const Icons = {
   success: SuccessIcon,
 };
 
-const transitionEndEventName = () => {
-  const el = document.createElement('div');
-
-  const transEndEventNames = {
-    WebkitTransition: 'webkitTransitionEnd',
-    MozTransition: 'transitionend',
-    OTransition: 'oTransitionEnd otransitionend',
-    transition: 'transitionend',
-  };
-
-  for (let name in transEndEventNames) {
-    if (el.style[name] !== undefined) {
-      return transEndEventNames[name];
-    }
-  }
-  return false;
-};
-
 type TNotification = {
   text: string;
   type: 'warning' | 'error' | 'success';
   uid?: any;
   state?: 'VISIBLED' | 'HIDDEN';
 };
+
+type TAnyFunction = (...args: any[]) => any;
 
 type TNotificationProps = {
   data: TNotification;
@@ -66,11 +48,11 @@ const Notification = React.memo(({data, onHide, onRemove}: TNotificationProps) =
       if (data.state === 'HIDDEN') {
         itemRef.current.style.height = '0px';
       }
-      itemRef.current.addEventListener(transitionEndEventName(), onTransitionEnd);
+      itemRef.current.addEventListener('transitionend', onTransitionEnd);
     }
     return () => {
       if (itemRef.current) {
-        itemRef.current.removeEventListener(transitionEndEventName(), onTransitionEnd);
+        itemRef.current.removeEventListener('transitionend', onTransitionEnd);
       }
     };
   }, [data.state]);
@@ -130,9 +112,9 @@ const Notifications = React.memo(() => {
   );
 
   React.useEffect(() => {
-    events.on(PUSH_NOTIFICATION, onPush);
+    // events.on(PUSH_NOTIFICATION, onPush);
     return () => {
-      events.off(PUSH_NOTIFICATION, onPush);
+      // events.off(PUSH_NOTIFICATION, onPush);
     };
   }, [onPush]);
   return (
@@ -150,7 +132,8 @@ const Notifications = React.memo(() => {
 });
 
 export const showNotification = (notification: TNotification) => {
-  events.trigger(PUSH_NOTIFICATION, notification);
+  console.log(notification);
+  // events.trigger(PUSH_NOTIFICATION, notification);
 };
 
 export default Notifications;

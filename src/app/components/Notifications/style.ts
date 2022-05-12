@@ -1,6 +1,10 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import {Colors} from 'src/styles/variables/Colors';
+const Colors = {
+  Yellow: 'yellow',
+  LightGreen: 'lime',
+  White: 'white',
+};
 
 export const Wrapper = styled.div``;
 
@@ -11,7 +15,7 @@ export const Item = styled.div`
 export const ItemInner = styled.div<{
   type: string;
 }>`
-  ${({type}) => css`
+  ${({ type }: { type: string }) => css`
     padding: 16px 22px;
     font-size: 14px;
     color: ${Colors.White};
