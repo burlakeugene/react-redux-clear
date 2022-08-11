@@ -90,6 +90,7 @@ module.exports = {
       store: __dirname + '/src/app/store',
       layouts: __dirname + '/src/app/layouts',
       assets: __dirname + '/src/app/assets',
+      hooks: __dirname + '/src/app/hooks',
     },
   },
   devServer: {

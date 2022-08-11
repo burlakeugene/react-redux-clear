@@ -160,3 +160,27 @@ test2('1');
 //   return result;
 // };
 // console.log(flatten(structure));
+
+
+// function generateParenthesis(n) {
+//   const result = []
+
+//   const generateCombo = (left, right, partial) => {
+//     console.log(partial)
+//     if (left > right) {
+//       return
+//     }
+//     if (!left && !right) {
+//       result.push(partial)
+//     }
+//     if (left > 0) {
+//       generateCombo(left - 1, right, partial + '(')
+//     }
+//     if (right > 0) {
+//       generateCombo(left, right - 1, partial + ')')
+//     }
+//   }
+//   generateCombo(n, n, '')
+
+//   return result
+// }
