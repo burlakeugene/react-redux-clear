@@ -65,10 +65,6 @@ export const Drag = styled.div<TDrag>`
     margin-top: -15px;
     cursor: grab;
     touch-action: none;
-    ${draggable &&
-    css`
-      cursor: grabbing;
-    `}
     &:after {
       content: '';
       position: absolute;
@@ -79,7 +75,15 @@ export const Drag = styled.div<TDrag>`
       width: 32px;
       border-radius: 2px;
       background-color: var(--swipe-background-light);
+      transition: all 0.3s;
     }
+    ${draggable &&
+    css`
+      cursor: grabbing;
+      &:after{
+        width: 40px;
+      }
+    `}
   `};
 `;
 

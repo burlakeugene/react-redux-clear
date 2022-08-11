@@ -1,9 +1,11 @@
-declare module "*.svg" {
+declare module '*.svg' {
   const content: any;
   export default content;
 }
 
-declare module "*.svg?jsx" {
+declare module '*.svg?jsx' {
   const content: any;
   export default content;
 }
+
+declare module 'hooks';

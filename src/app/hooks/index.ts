@@ -1,15 +1,6 @@
-import useEvent from './useEvent';
-import useHotkey from './useHotkey';
-import useOnChange from './useOnChange';
-import useOnMount from './useOnMount';
-import useOnUnmount from './useOnUnmount';
-import usePrevious from './usePrevious';
-
-export default {
-  useEvent,
-  useHotkey,
-  useOnChange,
-  useOnMount,
-  useOnUnmount,
-  usePrevious
-}
+export { default as useEvent } from './useEvent';
+export { default as useHotkey } from './useHotkey';
+export { default as useOnChange } from './useOnChange';
+export { default as useOnMount } from './useOnMount';
+export { default as useOnUnmount } from './useOnUnmount';
+export { default as usePrevious } from './usePrevious';

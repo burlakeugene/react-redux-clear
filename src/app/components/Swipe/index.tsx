@@ -1,5 +1,4 @@
 import React from 'react';
-//@ts-expect-error: ok
 import ReactDOM from 'react-dom';
 import * as S from './styles';
 
@@ -61,11 +60,11 @@ const Swipe = React.memo(
         }
       };
       const pointerUp = (event: any) => {
+        setDraggable(null);
         setTimeout(() => {
           if (draggable?.hide) {
             close();
           }
-          setDraggable(null);
           if (panelRef.current) {
             panelRef.current?.style.removeProperty('transform');
           }
@@ -97,7 +96,7 @@ const Swipe = React.memo(
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            if (!draggable?.current) close();
+            if (!draggable) close();
           }}
         >
           <S.Inner
