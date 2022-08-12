@@ -9,6 +9,7 @@
     "jsx": "react",
     "allowJs": true,
     "strict": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src/app"
   }
 }

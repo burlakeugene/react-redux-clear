@@ -3,6 +3,10 @@ import React from 'react';
 import ErrorIcon from 'assets/icons/error.svg?jsx';
 import SuccessIcon from 'assets/icons/success.svg?jsx';
 import WarningIcon from 'assets/icons/warning.svg?jsx';
+import Emitter from 'event-emitter';
+
+//@ts-expect-error: ok
+const events = new Emitter();
 
 import * as S from './style';
 
@@ -27,53 +31,62 @@ type TNotificationProps = {
   onRemove: TAnyFunction;
 };
 
-const Notification = React.memo(({data, onHide, onRemove}: TNotificationProps) => {
-  const itemRef = React.useRef<HTMLDivElement>(null);
-  const itemInnerRef = React.useRef<HTMLDivElement>(null);
+const Notification = React.memo(
+  ({ data, onHide, onRemove }: TNotificationProps) => {
+    const itemRef = React.useRef<HTMLDivElement>(null);
+    const itemInnerRef = React.useRef<HTMLDivElement>(null);
 
-  const onTransitionEnd = () => {
-    // if(data.state === 'VISIBLED' && itemRef.current){
-    //   itemRef.current.style.height = 'auto';
-    // }
-    if (data.state === 'HIDDEN') {
-      onRemove(data);
-    }
-  };
-
-  React.useLayoutEffect(() => {
-    if (itemRef.current && itemInnerRef.current) {
-      if (data.state === 'VISIBLED') {
-        itemRef.current.style.height = itemInnerRef.current.clientHeight + 'px';
+    const onTransitionEnd = () => {
+      if (data.state === 'VISIBLED' && itemRef.current) {
+        itemRef.current.style.height = 'auto';
       }
       if (data.state === 'HIDDEN') {
-        itemRef.current.style.height = '0px';
-      }
-      itemRef.current.addEventListener('transitionend', onTransitionEnd);
-    }
-    return () => {
-      if (itemRef.current) {
-        itemRef.current.removeEventListener('transitionend', onTransitionEnd);
+        onRemove(data);
       }
     };
-  }, [data.state]);
-  const Icon = Icons?.[data.type];
-  return (
-    <S.Item
-      ref={itemRef}
-      onClick={() => {
-        onHide(data);
-      }}
-      style={{
-        height: '0px',
-      }}
-    >
-      <S.ItemInner type={data.type} ref={itemInnerRef}>
-        {/* {Icon && <Icon />} */}
-        {data.text}
-      </S.ItemInner>
-    </S.Item>
-  );
-});
+
+    React.useEffect(() => {
+      if (itemRef.current && itemInnerRef.current) {
+        if (data.state === 'VISIBLED') {
+          itemRef.current.style.height =
+            itemInnerRef.current.clientHeight + 'px';
+        }
+        if (data.state === 'HIDDEN') {
+          itemRef.current.style.height =
+            itemInnerRef.current.clientHeight + 'px';
+          setTimeout(() => {
+            itemRef.current.style.height = '0px';
+          }, 0);
+        }
+        itemRef.current.addEventListener('transitionend', onTransitionEnd);
+      }
+      return () => {
+        if (itemRef.current) {
+          itemRef.current.removeEventListener('transitionend', onTransitionEnd);
+        }
+      };
+    }, [data.state]);
+    const Icon = Icons?.[data.type];
+    return (
+      <S.Item
+        ref={itemRef}
+        onClick={() => {
+          onHide(data);
+        }}
+        style={{
+          height: '0px',
+        }}
+      >
+        <S.ItemInner ref={itemInnerRef}>
+          <S.ItemBackground type={data.type}>
+            {Icon && <Icon />}
+            {data.text}
+          </S.ItemBackground>
+        </S.ItemInner>
+      </S.Item>
+    );
+  }
+);
 
 const PUSH_NOTIFICATION = 'PUSH_NOTIFICATION';
 
@@ -88,33 +101,36 @@ const Notifications = React.memo(() => {
 
   const onPush = React.useCallback(
     (notification: TNotification) => {
+      console.log(notification);
       setNotifications([...notifications, prepareNotification(notification)]);
     },
-    [notifications],
+    [notifications]
   );
 
   const onHide = React.useCallback(
     (notification: TNotification) => {
       const notificationIndex = notifications.findIndex(
-        (current) => current.uid === notification.uid,
+        (current) => current.uid === notification.uid
       );
       notifications[notificationIndex].state = 'HIDDEN';
       setNotifications([...notifications]);
     },
-    [notifications],
+    [notifications]
   );
 
   const onRemove = React.useCallback(
     (notification: TNotification) => {
-      setNotifications([...notifications.filter((current) => current.uid !== notification.uid)]);
+      setNotifications([
+        ...notifications.filter((current) => current.uid !== notification.uid),
+      ]);
     },
-    [notifications],
+    [notifications]
   );
 
   React.useEffect(() => {
-    // events.on(PUSH_NOTIFICATION, onPush);
+    events.on(PUSH_NOTIFICATION, onPush);
     return () => {
-      // events.off(PUSH_NOTIFICATION, onPush);
+      events.off(PUSH_NOTIFICATION, onPush);
     };
   }, [onPush]);
   return (
@@ -132,8 +148,7 @@ const Notifications = React.memo(() => {
 });
 
 export const showNotification = (notification: TNotification) => {
-  console.log(notification);
-  // events.trigger(PUSH_NOTIFICATION, notification);
+  events.emit(PUSH_NOTIFICATION, notification);
 };
 
 export default Notifications;

@@ -17,11 +17,21 @@ import DynamicTime from 'components/DynamicTime';
 
 const container = document.getElementById('app');
 const root = createRoot(container);
-import Notifications from './components/Notifications';
+import Notifications, { showNotification } from 'components/Notifications';
 
 root.render(
   <Provider store={store}>
     <Router>
+      <button
+        onClick={() => {
+          showNotification({
+            text: 'dsadas ' + +new Date(),
+            type: 'error',
+          });
+        }}
+      >
+        ds
+      </button>
       <Link to="/">Index</Link> | <Link to="/todolist">ToDo</Link> |{' '}
       <Link to="/demo">Demo</Link>
       <Notifications />
