@@ -9,9 +9,6 @@ if (!container) {
   document.body.appendChild(container);
 }
 
-const isFunction = (target: TFunction) =>
-  target && {}.toString.call(target) === '[object Function]';
-
 type TProps = {
   children: React.ReactNode;
   open?: boolean;
@@ -47,11 +44,7 @@ const Swipe = React.memo(
       }));
 
       const pointerDown = (event: any) => {
-        if (
-          event.path.some((item: any) => {
-            return item === dragRef.current;
-          })
-        ) {
+        if (event.target === dragRef.current) {
           setDraggable({
             start: event.clientY,
             top: window.innerHeight - panelRef.current.clientHeight,
@@ -101,8 +94,8 @@ const Swipe = React.memo(
         >
           <S.Inner
             ref={panelRef}
-            onClick={(e) => {
-              e.stopPropagation();
+            onClick={(event) => {
+              event.stopPropagation();
             }}
             opened={opened}
             draggable={draggable}

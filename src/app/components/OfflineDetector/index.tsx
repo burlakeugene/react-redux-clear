@@ -62,7 +62,7 @@ const OfflineDetector = React.memo<TProps>(
         ? navigator.onLine
         : true
     );
-    const pollingId = React.useRef<NodeJS.Timer | undefined>(undefined);
+    const pollingId = React.useRef<NodeJS.Timeout>();
     const goOnline = () => {
       setOnline(true);
     };

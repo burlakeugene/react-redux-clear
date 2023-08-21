@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CLIENT_CONFIGS_DIR = path.resolve(__dirname, './config');
@@ -15,7 +16,7 @@ function getJSONConfig() {
 const JSON_CONFIG = getJSONConfig();
 const isDevelopment = process.env.WEBPACK_DEV_SERVER === 'true';
 module.exports = {
-  entry: ['@babel/polyfill', './src/index.js'],
+  entry: ['./src/index.js'],
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: JSON_CONFIG.publicPath,
@@ -97,6 +98,9 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'bundle.css',
+    }),
     new FaviconsWebpackPlugin('./src/favicon.svg'),
     new HtmlWebpackPlugin({
       template: './src/index.html',
