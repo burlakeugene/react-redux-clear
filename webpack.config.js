@@ -39,25 +39,20 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.scss$/,
+        test: /\.(s[ac]|c)ss$/i,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer()],
+              postcssOptions: {
+                plugins: [autoprefixer()],
+              },
               sourceMap: true,
             },
           },
-          {
-            loader: 'sass-loader',
-            options: {},
-          },
+          'sass-loader',
         ],
       },
       {
