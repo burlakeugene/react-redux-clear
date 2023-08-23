@@ -36,13 +36,11 @@ foo(142).then((resp) => {
 type TTwoArgsFunction = (a: string, b: number) => boolean;
 type Parameters<T> = T extends (...args: infer T) => any ? T : never;
 type ReturnType<T> = T extends (...args: any[]) => infer T ? T : never;
-type TMyType<T> = (a:Parameters<T>[0]) => Parameters<T>[1];
+type TMyType<T> = (a: Parameters<T>[0]) => Parameters<T>[1];
 type TTest = TMyType<TTwoArgsFunction>;
 const test2: TTest = (a) => +a;
 
 test2('1');
-
-
 
 // let sum = function (num) {
 //   let current = num,
@@ -161,7 +159,6 @@ test2('1');
 // };
 // console.log(flatten(structure));
 
-
 // function generateParenthesis(n) {
 //   const result = []
 
@@ -184,3 +181,43 @@ test2('1');
 
 //   return result
 // }
+
+// array flatten
+// const array = [[-4, [-3, -2, [-1, 0]]], 1, 2, [3, 4], [5, 6, [7, 8, [9, 10]]]];
+
+
+// const flatten = (arr) => {
+//   let i = arr.length - 1;
+//   const result = [];
+
+//   while (i >= 0) {
+//     const item = arr.pop();
+//     if (Array.isArray(item)) {
+//       arr = [...arr, ...item];
+//       i += item.length;
+//     } else {
+//       result.unshift(item);
+//     }
+//     --i;
+//   }
+//   return result;
+// };
+
+
+// const flatten = (array) => {
+//   let i = array.length - 1;
+
+//   while (i >= 0) {
+//     if (Array.isArray(array[i])) {
+//       const length = array[i].length;
+//       array.splice(i, 1, ...array[i]);
+//       i += length;
+//     } else {
+//       i--;
+//     }
+//   }
+
+//   return array;
+// };
+
+// console.log(flatten(array));
