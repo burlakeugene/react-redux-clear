@@ -99,30 +99,30 @@ test2('1');
 // // })
 
 // //event loop
-// // console.log('1');
-// // setTimeout(() => {
-// //   console.log('2');
-// //   new Promise((resolve) => {
-// //     console.log('9')
-// //     resolve();
-// //   }).then(() => {
-// //     console.log('7');
-// //   });
-// // }, 0);
-// // setTimeout(() => {
-// //   console.log('8');
-// // }, 0);
-// // let promise = new Promise((resolve) => {
-// //   console.log('3');
-// //   resolve();
-// // });
-// // promise.then((resp) => {
-// //   console.log('4')
-// //   return resp
-// // }).then(() => {
-// //   console.log('5');
-// // })
-// // console.log('6');
+// console.log('1');
+// setTimeout(() => {
+//   console.log('2');
+//   new Promise((resolve) => {
+//     console.log('9')
+//     resolve();
+//   }).then(() => {
+//     console.log('7');
+//   });
+// }, 0);
+// setTimeout(() => {
+//   console.log('8');
+// }, 0);
+// let promise = new Promise((resolve) => {
+//   console.log('3');
+//   resolve();
+// });
+// promise.then((resp) => {
+//   console.log('4')
+//   return resp
+// }).then(() => {
+//   console.log('5');
+// })
+// console.log('6');
 
 // let str = 'Аывц-уцв , 2!';
 // console.log(str.replace(/[^a-zA-ZА-Яа-яЁё]/gi, '').toLowerCase());
