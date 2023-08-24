@@ -221,3 +221,20 @@ test2('1');
 // };
 
 // console.log(flatten(array));
+
+
+// const sum = (number) => {
+//   let result = number;
+//   const add = (nextNumber) => {
+//     if(nextNumber == undefined){
+//       return result;
+//     }
+//     else{
+//       result += nextNumber;
+//       return add;
+//     }
+//   }
+//   return add;
+// }
+
+// console.log(sum(2)(3)());
