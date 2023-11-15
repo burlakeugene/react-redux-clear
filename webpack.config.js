@@ -18,7 +18,7 @@ const isDevelopment = process.env.WEBPACK_DEV_SERVER === 'true';
 module.exports = {
   entry: ['./src/index.js'],
   output: {
-    path: path.join(__dirname, '/build'),
+    path: path.join(__dirname, '/docs'),
     publicPath: JSON_CONFIG.publicPath,
     filename: 'bundle.js',
   },
