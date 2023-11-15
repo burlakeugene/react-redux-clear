@@ -7,6 +7,7 @@
     "dev": "CONFIG_NAME='dev' webpack-dev-server --mode development --host localhost --port 3001 --open --hot",
     "stage": "CONFIG_NAME='dev' webpack --mode development",
     "prod": "CONFIG_NAME='prod' webpack --mode production",
+    "publish": "CONFIG_NAME='github' webpack && git add . && git commit -m 'publish' && git push",
     "test": "jest"
   },
   "author": "",
