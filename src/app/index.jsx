@@ -10,6 +10,7 @@ import {
 import { Provider } from 'react-redux';
 import Demos from 'containers/Demos';
 import ToDo from 'containers/ToDo';
+import Test from 'containers/Test';
 import store from 'store';
 import './tests';
 import './styles.scss';
@@ -21,6 +22,7 @@ import Notifications, { showNotification } from 'components/Notifications';
 
 root.render(
   <Provider store={store}>
+    <Test />
     <Router>
       <button
         onClick={() => {
