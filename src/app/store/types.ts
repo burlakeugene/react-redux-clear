@@ -1,6 +1,6 @@
 export interface IItem {
   name: string;
-  date: Date;
+  date: string;
   id: string;
   status: string;
 }

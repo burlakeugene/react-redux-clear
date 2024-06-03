@@ -4,7 +4,7 @@ import { add } from 'store/reducers/todo';
 
 export default () => {
   const [name, setName] = React.useState(''),
-    dispatch = useDispatch(),
+    dispatch = useDispatch<TDispatch>(),
     changeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
       setName(event.target.value);
     },

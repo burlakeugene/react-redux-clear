@@ -1,12 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-  Link,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Demos from 'containers/Demos';
 import ToDo from 'containers/ToDo';
@@ -14,7 +8,6 @@ import Test from 'containers/Test';
 import store from 'store';
 import './tests';
 import './styles.scss';
-import DynamicTime from 'components/DynamicTime';
 
 const container = document.getElementById('app');
 const root = createRoot(container);

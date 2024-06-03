@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { edit, remove, get } from 'store/reducers/todo';
-import { RootState, IItem } from 'store/types';
+import { get } from 'store/reducers/todo';
+import { RootState } from 'store/types';
 import Item from './Item';
 export default () => {
-  const list = useSelector((state: RootState) => {
-      return state.todo.list;
-    }),
-    dispatch = useDispatch();
+  const list = useSelector((state: RootState) => state.todo.list);
+  const dispatch = useDispatch<TDispatch>();
+
   React.useEffect(() => {
     dispatch(get());
   }, []);
+
   return (
     <>
       {list.length ? (

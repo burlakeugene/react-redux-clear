@@ -9,6 +9,18 @@
     "allowJs": true,
     "strict": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src/app"
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "containers/*": ["src/app/containers/*"],
+      "components/*": ["src/app/components/*"],
+      "store/*": ["src/app/store/*"],
+      "store": ["src/app/store"],
+      "hooks/*": ["src/app/hooks/*"],
+      "hooks": ["src/app/hooks"],
+      "actions/*": ["src/app/actions/*"],
+      "layouts/*": ["src/app/layouts/*"],
+      "assets/*": ["src/app/assets/*"]
+    }
   }
 }

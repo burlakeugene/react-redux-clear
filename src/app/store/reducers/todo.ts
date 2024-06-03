@@ -1,32 +1,43 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState, IItem } from '../types';
 
 const getRandomId = () => {
   return Math.random().toString(16);
 };
 
-export const get = createAsyncThunk('todo/get', (data) => {
+const initialState: RootState['todo'] = {
+  list: [],
+};
+
+export const get = createAsyncThunk<IItem[]>('todo/get', () => {
   return new Promise((resolve) => {
     resolve(JSON.parse(localStorage.getItem('todolist') || '[]'));
   });
 });
 
-export const add = createAsyncThunk('todo/add', (data) => {
+export const add = createAsyncThunk<IItem, Pick<IItem, 'name'>>(
+  'todo/add',
+  (data) => {
+    return Promise.resolve({
+      ...data,
+      id: getRandomId(),
+      status: 'NEW',
+      date: new Date().toString(),
+    });
+  }
+);
+
+export const edit = createAsyncThunk<IItem, IItem>('todo/edit', (data) => {
   return Promise.resolve(data);
 });
 
-export const edit = createAsyncThunk('todo/edit', (data) => {
-  return Promise.resolve(data);
-});
-
-export const remove = createAsyncThunk('todo/remove', (data) => {
+export const remove = createAsyncThunk<IItem, IItem>('todo/remove', (data) => {
   return Promise.resolve(data);
 });
 
 export const todoSlice = createSlice({
   name: 'todo',
-  initialState: {
-    list: [],
-  },
+  initialState,
   reducers: {
     // add: (state, action) => {
     //   console.log(state, action);
@@ -35,9 +46,6 @@ export const todoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(add.fulfilled, (state, action) => {
-      action.payload.date = new Date().toString();
-      action.payload.id = getRandomId();
-      action.payload.status = 'NEW';
       state.list.unshift(action.payload);
       localStorage.setItem('todolist', JSON.stringify(state.list));
     });
