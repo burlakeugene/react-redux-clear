@@ -14,10 +14,10 @@
     "paths": {
       "containers/*": ["src/app/containers/*"],
       "components/*": ["src/app/components/*"],
-      "store/*": ["src/app/store/*"],
       "store": ["src/app/store"],
-      "hooks/*": ["src/app/hooks/*"],
+      "store/*": ["src/app/store/*"],
       "hooks": ["src/app/hooks"],
+      "hooks/*": ["src/app/hooks/*"],
       "actions/*": ["src/app/actions/*"],
       "layouts/*": ["src/app/layouts/*"],
       "assets/*": ["src/app/assets/*"]
