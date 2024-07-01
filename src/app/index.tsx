@@ -12,10 +12,11 @@ import './styles.scss';
 const container = document.getElementById('app');
 const root = createRoot(container);
 import Notifications, { showNotification } from 'components/Notifications';
-
+import Circle from 'components/Circle';
 root.render(
   <Provider store={store}>
     <Test />
+    <Circle start={new Date().toISOString()} duration={3} />
     <Router>
       <button
         onClick={() => {
