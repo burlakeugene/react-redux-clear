@@ -28,11 +28,11 @@ const Circle = React.memo(({ start, duration }: TProps) => {
     >
       <circle
         transform="rotate(45 50 50)"
-        r="48"
+        r="46"
         cx="50"
         cy="50"
         stroke={color}
-        stroke-width="3"
+        stroke-width="4"
         stroke-linecap="round"
         stroke-dashoffset={`${diffPx}px`}
         fill="transparent"

@@ -16,7 +16,7 @@ import Circle from 'components/Circle';
 root.render(
   <Provider store={store}>
     <Test />
-    <Circle start={new Date().toISOString()} duration={3} />
+    <Circle start={new Date().toISOString()} duration={10} />
     <Router>
       <button
         onClick={() => {
