@@ -13,9 +13,9 @@ function hexToRgb(hex: THex): TRbg {
 }
 
 function rgbToHex(rgb: TRbg): THex {
-  let r = rgb[0].toString(16).padStart(2, '0');
-  let g = rgb[1].toString(16).padStart(2, '0');
-  let b = rgb[2].toString(16).padStart(2, '0');
+  const r = rgb[0].toString(16).padStart(2, '0');
+  const g = rgb[1].toString(16).padStart(2, '0');
+  const b = rgb[2].toString(16).padStart(2, '0');
 
   return `#${r}${g}${b}`;
 }
