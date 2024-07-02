@@ -5,7 +5,7 @@ type TSvg = {
 };
 
 export const Svg = styled.svg<TSvg>`
-  ${({ percentage }) => css`
+  ${({ percentage = 0}) => css`
     transition: all 0.6s;
     opacity: 0;
     transform: scale(0);
