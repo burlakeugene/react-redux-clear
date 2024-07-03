@@ -20,12 +20,14 @@ const TimerCircle = React.memo(
       return <>{children?.()}</>;
     }
 
-    const seconds = (+new Date(new Date().toISOString()) - +new Date(start)) / 1000;
-    const percentage = (seconds * 100) / duration;
-    const px = 300 * percentage / 100;
+    const seconds = (+new Date() - +new Date(start)) / 1000;
+    const percentage = Math.min((seconds * 100) / duration, 100);
+    const px = (300 * percentage) / 100;
 
     if (percentage < 100) {
-      setTimeout(() => forceUpdate({}));
+      window.requestAnimationFrame(() => {
+        forceUpdate({});
+      });
     }
 
     const color = getIntermediateColor(colors, percentage);
