@@ -22,7 +22,7 @@ const TimerCircle = React.memo(
 
     const seconds = (+new Date(new Date().toISOString()) - +new Date(start)) / 1000;
     const percentage = (seconds * 100) / duration;
-    const px = (300 * percentage) / 100;
+    const px = 300 * percentage / 100;
 
     if (percentage < 100) {
       setTimeout(() => forceUpdate({}));
