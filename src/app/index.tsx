@@ -12,12 +12,19 @@ import './styles.scss';
 const container = document.getElementById('app');
 const root = createRoot(container);
 import Notifications, { showNotification } from 'components/Notifications';
-import TimerCircle from 'components/TimerCircle';
+import Timer from 'components/Timer';
+import * as S from './style';
 
 root.render(
   <Provider store={store}>
     <Test />
-    <TimerCircle start={new Date().toISOString()} duration={10} />
+    <Timer
+      start={new Date().toISOString()}
+      duration={10}
+      render={(props) => <div>
+        <S.Circle {...props} color="red"/>
+      </div>}
+    />
     <Router>
       <button
         onClick={() => {
