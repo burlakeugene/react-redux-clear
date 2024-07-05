@@ -18,15 +18,14 @@ import * as S from './style';
 root.render(
   <Provider store={store}>
     <Test />
-    <Timer
-      start={new Date().toISOString()}
-      duration={10}
-      render={(props) => (
+    <Timer start={undefined} duration={undefined}>
+      {(props) => (
         <div>
+          dddd
           <S.Circle {...props} />
         </div>
       )}
-    />
+    </Timer>
     <Router>
       <button
         onClick={() => {
