@@ -21,9 +21,11 @@ root.render(
     <Timer
       start={new Date().toISOString()}
       duration={10}
-      render={(props) => <div>
-        <S.Circle {...props} color="red"/>
-      </div>}
+      render={(props) => (
+        <div>
+          <S.Circle {...props} />
+        </div>
+      )}
     />
     <Router>
       <button
