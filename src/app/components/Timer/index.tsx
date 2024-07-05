@@ -9,7 +9,7 @@ type TProgressProps = {
 };
 
 export const Circle = React.memo<TProgressProps>(
-  ({ className, color, value }) => {
+  ({ className, color, value = 100 }) => {
     const px = (300 * value) / 100;
 
     return (
@@ -43,7 +43,7 @@ type TProps = {
     value: number;
     color: string;
     seconds: number;
-  }) => React.ReactNode;
+  }) => React.ReactElement;
 };
 
 const DEFAULT_COLORS = ['#54DCA0', '#FFC043', '#FF6937'];
