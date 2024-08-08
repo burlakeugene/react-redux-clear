@@ -12,17 +12,17 @@ import './styles.scss';
 const container = document.getElementById('app');
 const root = createRoot(container);
 import Notifications, { showNotification } from 'components/Notifications';
-import Timer from 'components/Timer';
+import Timer, { Circle } from 'components/Timer';
 import * as S from './style';
 
 root.render(
   <Provider store={store}>
     <Test />
-    <Timer start={undefined} duration={undefined}>
+    <Timer start={new Date().toISOString()} duration={30}>
       {(props) => (
         <div>
           dddd
-          <S.Circle {...props} />
+          <Circle {...props} />
         </div>
       )}
     </Timer>
