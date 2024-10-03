@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Demos from 'containers/Demos';
 import ToDo from 'containers/ToDo';
 import Test from 'containers/Test';
+import Number from 'components/Number';
 import store from 'store';
 import './tests';
 import './styles.scss';
@@ -18,6 +19,7 @@ import * as S from './style';
 root.render(
   <Provider store={store}>
     <Test />
+    <Number value={323.3232} animated />
     <Timer start={new Date().toISOString()} duration={30}>
       {(props) => (
         <div>
