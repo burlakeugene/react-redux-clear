@@ -18,16 +18,6 @@ import * as S from './style';
 
 root.render(
   <Provider store={store}>
-    <Test />
-    <Number value={323.3232} animated />
-    <Timer start={new Date().toISOString()} duration={30}>
-      {(props) => (
-        <div>
-          dddd
-          <Circle {...props} />
-        </div>
-      )}
-    </Timer>
     <Router>
       <button
         onClick={() => {

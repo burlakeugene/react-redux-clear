@@ -7,15 +7,32 @@ import Field from 'components/Field';
 import DynamicTime from 'components/DynamicTime';
 import Humburger from 'components/Humburger';
 import OfflineDetector from 'components/OfflineDetector';
-
+import FlipNumber from 'components/FlipNumber';
 const App = (props) => {
   let swipeRef = useRef();
   let [humburgerState, humburgerChange] = useState(false);
   const aa = React.useCallback(() => {
     humburgerChange(!humburgerState);
   }, [humburgerState]);
+  const [number, setNumber] = React.useState(0);
+
   return (
     <>
+      <button
+        onClick={() => {
+          setNumber((prev) => prev - 1);
+        }}
+      >
+        down
+      </button>
+      <FlipNumber>{number}</FlipNumber>
+      <button
+        onClick={() => {
+          setNumber((prev) => prev + 1);
+        }}
+      >
+        up
+      </button>
       {props.text}
       <Counter />
       <button
@@ -25,35 +42,101 @@ const App = (props) => {
       >
         Swipe call
       </button>
-      <OfflineDetector render={(online) => {
-        return online ? <div>online</div> : <div>offline</div>
-      }} />
+      <OfflineDetector
+        render={(online) => {
+          return online ? <div>online</div> : <div>offline</div>;
+        }}
+      />
       <Swipe ref={swipeRef} drag>
         <div onClick={aa}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+          ipsam nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Reiciendis ipsam nihil architecto
+          tenetur vel quia sunt doloribus vitae officiis molestias nulla
+          pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit. Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam
+          nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Reiciendis ipsam nihil architecto
+          tenetur vel quia sunt doloribus vitae officiis molestias nulla
+          pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit. Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam
+          nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit.Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Reiciendis ipsam nihil architecto
+          tenetur vel quia sunt doloribus vitae officiis molestias nulla
+          pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam
+          nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Reiciendis ipsam nihil architecto
+          tenetur vel quia sunt doloribus vitae officiis molestias nulla
+          pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit. Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam
+          nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Reiciendis ipsam nihil architecto
+          tenetur vel quia sunt doloribus vitae officiis molestias nulla
+          pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit. Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam
+          nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Reiciendis ipsam nihil architecto
+          tenetur vel quia sunt doloribus vitae officiis molestias nulla
+          pariatur, tempore veniam accusamus eum nemo dolorum. Saepe, sit.Lorem
+          ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis ipsam
+          nihil architecto tenetur vel quia sunt doloribus vitae officiis
+          molestias nulla pariatur, tempore veniam accusamus eum nemo dolorum.
+          Saepe, sit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Reiciendis ipsam nihil architecto tenetur vel quia sunt doloribus
+          vitae officiis molestias nulla pariatur, tempore veniam accusamus eum
+          nemo dolorum. Saepe, sit. Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Reiciendis ipsam nihil architecto tenetur vel quia
+          sunt doloribus vitae officiis molestias nulla pariatur, tempore veniam
+          accusamus eum nemo dolorum. Saepe, sit.
         </div>
       </Swipe>
       <Field value={1} min={0} max={200} step={1} />
