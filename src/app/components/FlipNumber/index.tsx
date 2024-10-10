@@ -1,12 +1,19 @@
 import React, { PropsWithChildren } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const ANIMATION_TIME = 300;
+
+const animation = (name) =>
+  css`
+    ${name} ${ANIMATION_TIME}ms
+  `;
+
+const numToArr = (number) => number.toString().split('');
 
 type TProps = {} & PropsWithChildren;
 const FlipNumber = React.memo<TProps>(({ children }) => {
   const [value, setValue] = React.useState(Number(children));
   const [nextValue, setNextValue] = React.useState(value);
-
-  const ANIMATION_TIME = 300;
 
   React.useEffect(() => {
     setNextValue(Number(children));
@@ -19,120 +26,124 @@ const FlipNumber = React.memo<TProps>(({ children }) => {
   }, [nextValue]);
 
   const up = keyframes`
-  to {
-    transform: translateY(-100%);
-  }
-`;
+    to {
+      transform: translateY(-100%);
+    }
+  `;
 
   const down = keyframes`
-  to {
-    transform: translateY(100%);
-  }
-`;
+    to {
+      transform: translateY(100%);
+    }
+  `;
 
-  const opacityOn = keyframes`
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-`;
+  const fadeOut = keyframes`
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  `;
 
-  const opacityOff = keyframes`
-  to {
-    opacity: 1;
-    visibility: visible;
-  }
-`;
+  const fadeIn = keyframes`
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  `;
 
-  const Num = styled.span`
+  const Current = styled.span``;
+
+  const Item = styled.span`
     position: relative;
     display: inline-block;
-    &,
-    &:before,
-    &:after,
-    span {
-      line-height: 1em;
-    }
+    line-height: 1em;
+    white-space: pre-wrap;
     &:before,
     &:after {
-      position: absolute;
       display: block;
+      position: absolute;
       top: 0;
-      left: 0;
+      left: 50%;
       opacity: 0;
       visibility: hidden;
     }
     &:before {
       content: attr(data-next);
-      transform: translateY(-100%);
+      transform: translateY(-100%) translateX(-50%);
     }
     &:after {
       content: attr(data-prev);
-      transform: translateY(100%);
-    }
-    &[data-next],
-    &[data-prev] {
-      span {
-        animation: ${opacityOn} ${ANIMATION_TIME / 1000}s linear;
-      }
+      transform: translateY(100%) translateX(-50%);
     }
     &[data-next] {
-      animation: ${down} ${ANIMATION_TIME / 1000}s linear;
+      animation: ${animation(down)};
+      ${Current} {
+        animation: ${animation(fadeOut)};
+      }
       &:before {
-        animation: ${opacityOff} ${ANIMATION_TIME / 1000}s linear;
+        animation: ${animation(fadeIn)};
       }
     }
     &[data-prev] {
-      animation: ${up} ${ANIMATION_TIME / 1000}s linear;
+      animation: ${animation(up)};
+      ${Current} {
+        animation: ${animation(fadeOut)};
+      }
       &:after {
-        animation: ${opacityOff} ${ANIMATION_TIME / 1000}s linear;
+        animation: ${animation(fadeIn)};
       }
     }
   `;
 
-  const numToArr = (number) => {
-    let array = number.toString().split('');
-    if (array[0] === '-') {
-      array[0] = null;
-      array[1] = array[1] * -1;
+  const prepared = React.useMemo(() => {
+    let valueArr = numToArr(value);
+    let nextValueArr = numToArr(nextValue);
+    const diff = nextValueArr.length - valueArr.length;
 
-      array = array.filter(Boolean);
+    if (diff > 0) {
+      valueArr = [...new Array(diff).fill(' '), ...valueArr];
     }
 
-    return array;
-  };
+    if (diff < 0) {
+      nextValueArr = [...new Array(Math.abs(diff)).fill(' '), ...nextValueArr];
+    }
 
-  return (
-    <>
-      {numToArr(value).map((part, index) => {
-        const number = Number(part);
-        const nextNumber = Number(numToArr(nextValue)[index]);
-        const props = {};
+    return valueArr.map((current, index) => {
+      const result = {
+        prev: null,
+        current,
+        next: null,
+      };
 
-        if (
-          (nextNumber || nextNumber === 0) &&
-          nextValue > value &&
-          nextNumber !== number
-        ) {
-          props['data-next'] = nextNumber;
-        }
+      if (value > nextValue && current !== nextValueArr[index]) {
+        result.prev = nextValueArr[index];
+      }
 
-        if (
-          (nextNumber || nextNumber === 0) &&
-          value > nextValue &&
-          nextNumber !== number
-        ) {
-          props['data-prev'] = nextNumber;
-        }
+      if (nextValue > value && current !== nextValueArr[index]) {
+        result.next = nextValueArr[index];
+      }
 
-        return (
-          <Num {...props}>
-            <span>{number}</span>
-          </Num>
-        );
-      })}
-    </>
-  );
+      return result;
+    });
+  }, [value, nextValue]);
+
+  return prepared.map((num, index) => {
+    const props = {};
+
+    if (num.prev) {
+      props['data-prev'] = num.prev;
+    }
+
+    if (num.next) {
+      props['data-next'] = num.next;
+    }
+
+    return (
+      <Item {...props} key={index}>
+        <Current>{num.current}</Current>
+      </Item>
+    );
+  });
 });
 
 export default FlipNumber;

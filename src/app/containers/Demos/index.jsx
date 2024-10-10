@@ -14,7 +14,7 @@ const App = (props) => {
   const aa = React.useCallback(() => {
     humburgerChange(!humburgerState);
   }, [humburgerState]);
-  const [number, setNumber] = React.useState(0);
+  const [number, setNumber] = React.useState(9);
 
   return (
     <>
